@@ -1,7 +1,18 @@
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+}
+h4,
+h5,
+h6 {
+  margin: 5px;
+}
+h6 {
+  color: #666363;
 }
 
 .app {
@@ -94,11 +105,38 @@ body {
 .res-container > .res-card > .card-description > .avg-rating {
   color: green !important;
 }
-
+.res-body > .filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.res-body > .filter > .search {
+  display: flex;
+  align-items: center;
+}
+.res-body > .filter > .search > .search-input {
+  width: 300px;
+  height: 30px;
+  border-radius: 4px;
+  padding: 0 10px;
+  border: 1px solid rgb(212, 208, 208);
+}
+.res-body > .filter > .search > .search-input:focus {
+  outline: none;
+}
+.res-body > .filter > .search > .search-btn {
+  height: 30px;
+  margin-left: 10px;
+  background-color: transparent;
+  border: 1px solid rgb(212, 208, 208);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
 .res-body > .filter > .filter-btn {
   background-color: white;
   box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.521);
-  margin-top: 20px;
   width: 200px;
   height: 30px;
   border: 1px solid rgb(245, 240, 240);
@@ -109,11 +147,61 @@ body {
   cursor: pointer;
   box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.521);
 }
-h4,
-h5,
-h6 {
-  margin: 5px;
+
+/* Shimmer effect for the card */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  width: 250px;
+  height: 300px;
 }
-h6 {
-  color: #666363;
+
+/* Shimmer effect for the image container */
+.shimmer-img {
+  position: relative;
+  width: 100%;
+  height: 75%;
+  padding-bottom: 60%; /* Aspect ratio, adjust as needed */
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(167, 167, 167, 0.7) 25%,
+    #dbdbdb 50%,
+    rgba(167, 167, 167, 0.7) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Shimmer effect for the text container */
+.shimmer-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+/* Shimmer effect for text lines */
+.shimmer-line {
+  width: 100%;
+  height: 16px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(167, 167, 167, 0.5) 25%,
+    #eeeeee 50%,
+    rgba(167, 167, 167, 0.5) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Animation for shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }

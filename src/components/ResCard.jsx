@@ -8,7 +8,7 @@ const ResCard = ({ resData }) => {
     cuisines,
     costForTwo,
     deliveryTime,
-  } = resData?.data;
+  } = resData?.info;
   return (
     <div className="res-card">
       <div className="card-img-container">
