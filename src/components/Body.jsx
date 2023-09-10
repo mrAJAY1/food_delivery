@@ -25,11 +25,10 @@ const Body = () => {
         ?.restaurants
     );
   };
-  function renderShimmer() {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(count => (
-      <Shimmer key={count} />
-    ));
-  }
+
+  const shimmer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
+    count => <Shimmer key={count} />
+  );
 
   return (
     <div className="res-body">
@@ -68,7 +67,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {restaurantList.length === 0
-          ? renderShimmer()
+          ? shimmer
           : filteredRestaurant.map(restaurant => {
               return <ResCard key={restaurant.info.id} resData={restaurant} />;
             })}

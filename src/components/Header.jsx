@@ -14,11 +14,11 @@ const Header = () => {
         <li>Cart</li>
         <li>
           <button
+            className="login-button"
             onClick={() => {
               buttonName === "Login"
                 ? setButtonName("Logout")
                 : setButtonName("Login");
-              console.log(buttonName);
             }}>
             {buttonName}
           </button>
