@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ResCard from "./ResCard";
 import Shimmer from "./Shimmer";
 
@@ -69,7 +70,14 @@ const Body = () => {
         {restaurantList.length === 0
           ? shimmer
           : filteredRestaurant.map(restaurant => {
-              return <ResCard key={restaurant.info.id} resData={restaurant} />;
+              return (
+                <Link
+                  className="text-decoration-none"
+                  key={restaurant.info.id}
+                  to={`/restaurant/${restaurant.info.id}`}>
+                  <ResCard resData={restaurant} />
+                </Link>
+              );
             })}
       </div>
     </div>

@@ -7,7 +7,7 @@ const ResCard = ({ resData }) => {
     avgRating,
     cuisines,
     costForTwo,
-    deliveryTime,
+    sla: { deliveryTime },
   } = resData?.info;
   return (
     <div className="res-card">
@@ -20,8 +20,8 @@ const ResCard = ({ resData }) => {
         <h5 className="avg-rating">{avgRating}</h5>
         <div className="cuisines">
           <h6>{cuisines.join(", ")}</h6>
-        </div>{" "}
-        <h6>₹{costForTwo / 100} FOR TWO</h6>
+        </div>
+        <h6>{costForTwo}</h6>
         <h6>{deliveryTime} minutes</h6>
       </div>
     </div>

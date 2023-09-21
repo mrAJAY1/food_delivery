@@ -72,25 +72,28 @@ h6 {
   width: 100%; /* Ensure it takes up the full width */
   max-width: 100%; /* Ensure it doesn't exceed the viewport width */
 }
-
+.text-decoration-none {
+  text-decoration: none;
+  color: inherit;
+}
 .res-card {
   padding: 5px;
   width: 100%; /* Take up the full width of the column */
   transition: transform 0.3s ease;
 }
-.res-container > .res-card > .card-img-container {
+.card-img-container {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-.res-container > .res-card:hover {
+.res-card:hover {
   transform: scale(90%);
   margin: auto;
   cursor: pointer;
 }
 
-.res-container > .res-card > .card-img-container > .overlay {
+.card-img-container > .overlay {
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -99,22 +102,22 @@ h6 {
   left: 0;
   background-color: rgba(0, 0, 0, 0.041);
 }
-.res-container > .res-card > .card-img-container > img {
+.res-card > .card-img-container > img {
   width: 100%;
   height: 100%;
   border-radius: 10px;
 }
-.res-container > .res-card > .card-description > .cuisines {
+.res-card > .card-description > .cuisines {
   max-width: 200px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; /* Display ellipsis for overflowed text */
 }
-.res-container > .res-card > .card-description > h6 {
+.res-card > .card-description > h6 {
   max-width: 100%;
   margin-right: 10px;
 }
-.res-container > .res-card > .card-description > .avg-rating {
+.res-card > .card-description > .avg-rating {
   color: green !important;
 }
 .res-body > .filter {
@@ -167,6 +170,11 @@ h6 {
   width: 250px;
   height: 300px;
 }
+.shimmer:hover {
+  transform: none;
+  margin: initial;
+  cursor: pointer;
+}
 
 /* Shimmer effect for the image container */
 .shimmer-img {
@@ -216,4 +224,8 @@ h6 {
   100% {
     background-position: 200% 0;
   }
+}
+
+.name-card {
+  border: 1px solid black;
 }
