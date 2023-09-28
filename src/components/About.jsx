@@ -13,7 +13,6 @@ class About extends React.Component {
       console.log("interval running")
     },1000)
   }
-
   componentWillUnmount() {
     clearInterval(this.timer)
   }

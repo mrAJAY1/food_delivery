@@ -2,31 +2,17 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ResCard from "./ResCard";
 import Shimmer from "./Shimmer";
+import useRestaurantList from "../utils/useRestaurantList";
 
 const Body = () => {
-  const [restaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const restaurantList = useRestaurantList();
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/api/seo/getListing?lat=12.960059122809971&lng=77.57337538383284"
-    );
-    const json = await data.json();
-    setRestaurantList(
-      json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    setFilteredRestaurant(
-      json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-  };
-
+    setFilteredRestaurant(restaurantList);
+  }, [restaurantList]);
+  
   const shimmer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
     count => <Shimmer key={count} />
   );

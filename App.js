@@ -1,19 +1,22 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import About from "./src/components/About";
-import Contact from "./src/components/Contact";
 import Error from "./src/components/Error";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import useOnlineStatus from "./src/utils/useOnlineStatus";
+
+const About = lazy(() => import("./src/components/About"));
+const Contact = lazy(() => import("./src/components/Contact"));
 
 const App = () => {
+  const onlineStatus = useOnlineStatus();
   return (
     <div className="app">
       <Header />
-      <Outlet />
+      {onlineStatus ? <Outlet /> : <h1>OOps you are offline</h1>}
     </div>
   );
 };
@@ -29,7 +32,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "about",
-        element: <About />,
+        element: (
+          <Suspense>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "contact",
