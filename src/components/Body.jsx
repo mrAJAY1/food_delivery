@@ -12,24 +12,24 @@ const Body = () => {
   useEffect(() => {
     setFilteredRestaurant(restaurantList);
   }, [restaurantList]);
-  
+
   const shimmer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
     count => <Shimmer key={count} />
   );
 
   return (
-    <div className="res-body">
-      <div className="filter">
-        <div className="search">
+    <div className="mt-14 flex flex-col items-center w-full">
+      <div className="flex justify-center gap-20 mx-auto">
+        <div className="search flex gap-x-5">
           <input
             type="text"
             placeholder="search"
-            className="search-input"
+            className="border rounded-md h-10 w-[500px] px-2.5"
             value={searchText}
             onChange={e => setSearchText(e.target.value)}
           />
           <button
-            className="search-btn"
+            className="rounded-lg border px-4"
             onClick={() => {
               const filtered = restaurantList.filter(res =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -41,7 +41,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="border rounded-lg px-5 bg-green-300"
           onClick={() => {
             const filteredList = restaurantList.filter(
               res => res.info.avgRating >= 4
@@ -52,13 +52,12 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
-      <div className="res-container">
+      <div className="mt-16 grid gap-x-20 gap-y-10 grid-cols-4 w-fit">
         {restaurantList.length === 0
           ? shimmer
           : filteredRestaurant.map(restaurant => {
               return (
                 <Link
-                  className="text-decoration-none"
                   key={restaurant.info.id}
                   to={`/restaurant/${restaurant.info.id}`}>
                   <ResCard resData={restaurant} />

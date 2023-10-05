@@ -9,20 +9,36 @@ const ResCard = ({ resData }) => {
     costForTwo,
     sla: { deliveryTime },
   } = resData?.info;
+  const formatter = new Intl.ListFormat("en", {
+    style: "long",
+    type: "conjunction",
+  });
   return (
-    <div className="res-card">
-      <div className="card-img-container">
-        <img src={CDN_URL + cloudinaryImageId} alt="card img" />
-        <div className="overlay"></div>
+    <div className="w-72 hover:scale-90 transition-transform">
+      <div className="relative">
+        <img
+          className="rounded-lg"
+          src={CDN_URL + cloudinaryImageId}
+          alt="card img"
+        />
+        <div className="absolute left-0 top-0 w-full h-full bg-black opacity-5 rounded-lg"></div>
       </div>
-      <div className="card-description">
-        <h4>{name}</h4>
-        <h5 className="avg-rating">{avgRating}</h5>
-        <div className="cuisines">
-          <h6>{cuisines.join(", ")}</h6>
+      <div className="mt-1">
+        <h4 className="text-xl font-semibold">{name}</h4>
+        <h5 className="text-lg font-semibold text-green-700">
+          {avgRating} star
+        </h5>
+        <div className="max-w-[230px]">
+          <h6 className="overflow-hidden text-ellipsis whitespace-nowrap">
+            {formatter.format(cuisines)}
+          </h6>
         </div>
-        <h6>{costForTwo}</h6>
-        <h6>{deliveryTime} minutes</h6>
+        <h6 className="overflow-hidden text-ellipsis whitespace-nowrap">
+          {costForTwo}
+        </h6>
+        <h6 className="overflow-hidden text-ellipsis whitespace-nowrap">
+          {deliveryTime} minutes
+        </h6>
       </div>
     </div>
   );
