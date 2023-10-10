@@ -5,11 +5,11 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Error from "./src/components/Error";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
-import RestaurantMenu from "./src/components/RestaurantMenu";
 import useOnlineStatus from "./src/utils/useOnlineStatus";
 
 const About = lazy(() => import("./src/components/About"));
 const Contact = lazy(() => import("./src/components/Contact"));
+const RestaurantMenu = lazy(() => import("./src/components/RestaurantMenu"));
 
 const App = () => {
   const onlineStatus = useOnlineStatus();
@@ -41,14 +41,18 @@ const appRouter = createBrowserRouter([
       {
         path: "contact",
         element: (
-          <Suspense>
+          <Suspense fallback={<div>Loading....</div>}>
             <Contact />
           </Suspense>
         ),
       },
       {
         path: "restaurant/:resId",
-        element: <RestaurantMenu />,
+        element: (
+          <Suspense fallback={<div>Loading....</div>}>
+            <RestaurantMenu />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

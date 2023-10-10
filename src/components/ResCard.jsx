@@ -9,7 +9,7 @@ const ResCard = ({ resData }) => {
     costForTwo,
     sla: { deliveryTime },
   } = resData?.info;
-  const formatter = new Intl.ListFormat("en", {
+  const formatter = new Intl.ListFormat("en-IN", {
     style: "long",
     type: "conjunction",
   });
@@ -24,24 +24,37 @@ const ResCard = ({ resData }) => {
         <div className="absolute left-0 top-0 w-full h-full bg-black opacity-5 rounded-lg"></div>
       </div>
       <div className="mt-1">
-        <h4 className="text-xl font-semibold">{name}</h4>
-        <h5 className="text-lg font-semibold text-green-700">
+        <h4 className="text-base font-semibold">{name}</h4>
+        <h5 className="text text-sm font-semibold text-green-700">
           {avgRating} star
         </h5>
-        <div className="max-w-[230px]">
-          <h6 className="overflow-hidden text-ellipsis whitespace-nowrap">
+        <div className="max-w-[100%]">
+          <h6 className="overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold text-gray-600">
             {formatter.format(cuisines)}
           </h6>
         </div>
-        <h6 className="overflow-hidden text-ellipsis whitespace-nowrap">
+        <h6 className="overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold text-gray-600">
           {costForTwo}
         </h6>
-        <h6 className="overflow-hidden text-ellipsis whitespace-nowrap">
+        <h6 className="overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold text-gray-600">
           {deliveryTime} minutes
         </h6>
       </div>
     </div>
   );
+};
+
+export const withPromotedLabel = RestaurantCard => {
+  return props => {
+    return (
+      <div className="relative">
+        <label className="bg-black text-white rounded-lg px-4 absolute top-2 z-10 rounded-l-none">
+          {props.resData.info.aggregatedDiscountInfoV3.header}
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
 };
 
 export default ResCard;

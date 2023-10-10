@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ResCard from "./ResCard";
+import ResCard, { withPromotedLabel } from "./ResCard";
 import Shimmer from "./Shimmer";
 import useRestaurantList from "../utils/useRestaurantList";
 
+const ResCardPromoted = withPromotedLabel(ResCard);
 const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -12,6 +13,7 @@ const Body = () => {
   useEffect(() => {
     setFilteredRestaurant(restaurantList);
   }, [restaurantList]);
+
 
   const shimmer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
     count => <Shimmer key={count} />
@@ -34,7 +36,6 @@ const Body = () => {
               const filtered = restaurantList.filter(res =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              console.log(filtered);
               setFilteredRestaurant(filtered);
             }}>
             Search
@@ -59,8 +60,13 @@ const Body = () => {
               return (
                 <Link
                   key={restaurant.info.id}
-                  to={`/restaurant/${restaurant.info.id}`}>
-                  <ResCard resData={restaurant} />
+                  to={`/restaurant/${restaurant.info.id}`}
+                  state={{ avgRating: restaurant?.info?.avgRating }}>
+                  {restaurant.info.aggregatedDiscountInfoV3?.header ? (
+                    <ResCardPromoted resData={restaurant} />
+                  ) : (
+                    <ResCard resData={restaurant} />
+                  )}
                 </Link>
               );
             })}

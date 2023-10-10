@@ -10,11 +10,9 @@ class NameCard extends React.Component {
         avatar_url: "dummy_avatar",
       },
     };
-    console.log(this.props.name + " constructor");
   }
 
   async componentDidMount() {
-    console.log(this.props.name + " componentDidMount");
     const data = await fetch("https://api.github.com/users/mrAJAY1");
     const json = await data.json();
     this.setState({ userInfo: json });
@@ -22,7 +20,6 @@ class NameCard extends React.Component {
   render() {
     const { name, location, avatar_url } = this.state.userInfo;
     const { count } = this.state;
-    console.log(this.props.name + " render");
     return (
       <div className="name-card">
         <p>count: {count}</p>
