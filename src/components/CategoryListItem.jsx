@@ -6,7 +6,7 @@ import { addItem } from "../store/slices/cartSlice";
 const CategoryListItem = ({ dishData }) => {
   const dispatch = useDispatch();
   return (
-    <div className="mt-5 flex justify-between">
+    <div className="mt-5 flex justify-between" data-testid="categoryListItem">
       <div className="mt-5 w-full flex justify-between items-center">
         <div className="w-9/12">
           <h5 className="text-md font-[500]">{dishData.name}</h5>
@@ -38,7 +38,7 @@ const CategoryListItem = ({ dishData }) => {
               dispatch(addItem(dishData));
             }}
           >
-            Add +{" "}
+            Add +
           </button>
         </div>
       </div>

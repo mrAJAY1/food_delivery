@@ -14,7 +14,10 @@ const ResCard = ({ resData }) => {
     type: "conjunction",
   });
   return (
-    <div className="w-72 hover:scale-90 transition-transform">
+    <div
+      data-testid="resCard"
+      className="w-72 hover:scale-90 transition-transform"
+    >
       <div className="relative">
         <img
           className="rounded-lg"
@@ -44,8 +47,8 @@ const ResCard = ({ resData }) => {
   );
 };
 
-export const withPromotedLabel = RestaurantCard => {
-  return props => {
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
     return (
       <div className="relative">
         <label className="bg-black text-white rounded-lg px-4 absolute top-2 z-10 rounded-l-none">

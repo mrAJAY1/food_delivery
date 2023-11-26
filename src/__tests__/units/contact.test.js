@@ -1,8 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import Contact from "../components/Contact";
+import Contact from "../../components/Contact";
 import "@testing-library/jest-dom";
 
 describe("contact page test cases", () => {
+  /* Functions that maybe helpful */
+  // beforeAll(() => console.log("Before All"));
+  // beforeEach(() => console.log("before each"));
+  // afterEach(() => console.log("after each"));
+  // afterAll(() => console.log("After All"));
+
   test("should load Contact Us component", () => {
     render(<Contact />);
     const heading = screen.getByRole("heading");
