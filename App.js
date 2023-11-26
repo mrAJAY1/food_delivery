@@ -6,6 +6,8 @@ import Error from "./src/components/Error";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
 import useOnlineStatus from "./src/utils/useOnlineStatus";
+import { Provider } from "react-redux";
+import store from "./src/store/store";
 
 const About = lazy(() => import("./src/components/About"));
 const Contact = lazy(() => import("./src/components/Contact"));
@@ -14,10 +16,12 @@ const RestaurantMenu = lazy(() => import("./src/components/RestaurantMenu"));
 const App = () => {
   const onlineStatus = useOnlineStatus();
   return (
-    <div className="app">
-      <Header />
-      {onlineStatus ? <Outlet /> : <h1>OOps you are offline</h1>}
-    </div>
+    <Provider store={store}>
+      <div className="app">
+        <Header />
+        {onlineStatus ? <Outlet /> : <h1>OOps you are offline</h1>}
+      </div>
+    </Provider>
   );
 };
 
